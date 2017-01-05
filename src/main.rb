@@ -1,0 +1,2 @@
+require 'gosu'
+puts 'Hello'
