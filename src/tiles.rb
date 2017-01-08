@@ -1,7 +1,7 @@
 require 'gosu'
 require_relative '../src/game_window'
+require_relative 'CONSTANTS'
 
-TILE_SIZE = 35
 
 class Tiles
 
@@ -14,7 +14,7 @@ class Tiles
 
   def draw
     @level.each_with_index { |tile_number, index|
-      @tile_array[tile_number].draw(0 + TILE_SIZE*index, 0, 1)
+      @tile_array[tile_number].draw(0 + TILE_SIZE*index, 0, 1) if tile_number != 0
     }
   end
 
@@ -23,7 +23,7 @@ class Tiles
     @tile_array = []
     (0..9).each { |row_index|
       (0..5).each { |column_index|
-        @tile_array.push(tile_set.subimage(TILE_SIZE*row_index, TILE_SIZE*column_index, TILE_SIZE, TILE_SIZE))
+        @tile_array.push(tile_set.subimage(TILE_SIZE*column_index, TILE_SIZE*row_index, TILE_SIZE, TILE_SIZE))
       }
     }
   end
@@ -32,7 +32,8 @@ class Tiles
      level = File.read("../levels/#{@level_number}.txt")
      level = level.chars
      level.each { |character|
-       @level.push(character.to_i)
+       @level.push(character.to_i) if character != ' '
+       puts "[LOG]#{@level.last}"
      }
   end
 end

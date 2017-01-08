@@ -1,12 +1,10 @@
 require 'gosu'
 require_relative '../src/game_window'
-PLAYER_WIDTH = 100
-PLAYER_HEIGHT = 25
-PLAYER_START_X_POS = 260
-PLAYER_START_Y_POS = 455
+require_relative '../src/CONSTANTS'
+
 class Player
   def initialize
-    @image = Gosu::Image.new('../media/breakout_sprites.png', :tileable=>true).subimage(0,200,PLAYER_WIDTH,PLAYER_HEIGHT)
+    @image = Gosu::Image.new('../media/breakout_sprites.png', tileable: true).subimage(0, 200, PLAYER_WIDTH, PLAYER_HEIGHT)
     @x_coord = PLAYER_START_X_POS
     @y_coord = PLAYER_START_Y_POS
     @x_vel = 3

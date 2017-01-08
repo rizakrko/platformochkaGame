@@ -1,4 +1,4 @@
-require_relative '../src/game_window'
+require_relative 'game_window'
 
 window = GameWindow.new
 window.show

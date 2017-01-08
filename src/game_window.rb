@@ -1,20 +1,17 @@
 require 'gosu'
 require_relative '../src/player'
-require_relative '../src/tiles'
-
-WINDOW_WIDTH = 640
-WINDOW_HEIGHT = 480
+require_relative '../src/circle'
+require_relative '../src/CONSTANTS'
+require_relative '../src/circle_field'
 
 
 class GameWindow < Gosu::Window
   def initialize
     super WINDOW_WIDTH, WINDOW_HEIGHT
     self.caption = 'Game Window'
-    #@background_image = Gosu::Image.new('../media/breakout_sprites.png', :tileable=>true)
     @background_image = Gosu::Image.new('../media/background.png', tileable: true)
-    #@game_tiles = Gosu::Image.load_tiles('../media/breakout_sprites.png',TILE_SIZE,TILE_SIZE)
     @player = Player.new
-    @tiles = Tiles.new
+    @circle_field = CircleField.new
   end
 
   def update
@@ -28,21 +25,12 @@ class GameWindow < Gosu::Window
 
   def draw
     @background_image.draw(0,0,0)
-    #row_index = 0
-    #column_index = 0
-    #@game_tiles.each do |tile|
-    #  tile.draw(5 + TILE_SIZE * column_index, 5 + TILE_SIZE * row_index, 1)
-    #  column_index += 1
-    #  if column_index == 9
-    #    column_index = 0
-    #    row_index += 1
-    #  end
-    #  if row_index == 5
-    #    break
-    #  end
-    #end
     @player.draw
-    @tiles.draw
+    @circle_field.draw
   end
 
+  def needs_cursor?
+    true
+  end
+  
 end
